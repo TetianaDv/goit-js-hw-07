@@ -8,7 +8,7 @@ const destroyButton = document.querySelector('[data-destroy]');
 const boxesContainer = document.querySelector('#boxes');
 
 function createBoxes(amount) {
-  boxesContainer.innerHTML = '';
+  const fragment = document.createDocumentFragment();
 
   let size = 30;
 
@@ -17,9 +17,12 @@ function createBoxes(amount) {
     box.style.width = `${size}px`;
     box.style.height = `${size}px`;
     box.style.backgroundColor = getRandomHexColor();
-    boxesContainer.appendChild(box);
+    fragment.appendChild(box);
     size += 10;
   }
+
+  boxesContainer.innerHTML = '';
+  boxesContainer.appendChild(fragment);
 }
 
 createButton.addEventListener('click', function () {
